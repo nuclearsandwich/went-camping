@@ -3,8 +3,7 @@ Camping.goes :Nuclearsandwich
 module Nuclearsandwich::Controllers
   class Index < R '/'
     def get
-      @time = Time.now
-      render :sundial
+      render :home
     end
   end
 
@@ -32,15 +31,53 @@ module Nuclearsandwich::Views
         link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
       end
 
-      body { self << yield }
+      div(id: 'navigation', class: 'container') do
+        ul(class: 'tabs') do
+          li(class: 'active')  { a(href: '/') { "Home" } }
+          li { a(href: '/about') { "About" } }
+          li { a(href: 'http://blog.nuclearsandwich.com') { "Blog" } }
+        end
+      end
+
+      div(class: 'container') { body { self << yield } }
+      div(id: 'footer', class: 'container') do
+        p do
+          <<EOF
+This website was made by Steven! Ragnarok as an experiment with
+#{a(href: 'http://camping.rubyforge.org') { "Camping" }} and
+#{a(href: 'http://twitter.github.com/bootstrap') { "Bootstrap" }}.
+EOF
+        end
+
+        p do
+          <<EOF
+The source code for this page is
+#{a(href: 'https://github.com/nuclearsandwich/nuclearsandwich.com'){ "public" }}
+however what little content there is here is Copyright #{Time.now.year}.
+EOF
+        end
+      end
     end
   end
 
-  def sundial
-    p { "The current time is #{@time}" }
+  def home
+    h1 { "Welcome!" }
+    p do
+      <<EOF
+You've stumbled upon the front page of Steven! Ragnarok.
+
+From here you can find out more #{a(href: '/about') { "about" }} me or check out
+some of my public projects on
+#{a(href: 'https://github.com/nuclearsandwich') { "GitHub" }} or
+#{a(href: 'https://bitbucket.org/nuclearsandwich') { "BitBucket" }}.
+I also write about technical and sundry topics on my
+#{a(href: 'http://blog.nuclearsandwich.com') { "blog" }}.
+EOF
+    end
   end
 
   def about
+    div(class: 'span10') do
     p do
       <<EOF
 #{@name} is a slightly mad (1) student of computer science and mathematics
@@ -67,6 +104,7 @@ an asignment and I don't want to put you or I in the position of hurting
 schoolwork since it makes me ever so bitter.
 EOF
     end
+  end
 
     p(id: 'footnotes') do
       <<EOF
