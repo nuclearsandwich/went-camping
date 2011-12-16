@@ -15,6 +15,13 @@ module Nuclearsandwich::Controllers
       render :about
     end
   end
+
+  class CSSBootstrap < R '/css/bootstrap.min.css'
+    def get
+      headers['Content-Type'] = 'text/css'
+      @css = File.read 'assets/css/bootstrap.min.css'
+    end
+  end
 end
 
 module Nuclearsandwich::Views
@@ -22,6 +29,7 @@ module Nuclearsandwich::Views
     html do
       head do
         title { "Nuclearsandwich!" }
+        link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
       end
 
       body { self << yield }
@@ -68,7 +76,7 @@ EOF
     end
 
     h2(id: 'langs-by-interest') do
-    "Programming Languages in which I am interested"
+      "Programming Languages in which I am interested"
     end
 
     ul do
