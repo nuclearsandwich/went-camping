@@ -48,8 +48,10 @@ module Nuclearsandwich::Views
         link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
       end
 
-      div(class: 'container') { body { self << yield } }
-      div(id: 'footer', class: 'container') do
+      div(class: 'container span10 offset3') { body { self << yield } }
+
+      div(id: 'footer', class: 'container span10 offset3') do
+        hr
         p do
           <<EOF
 This website was made by Steven! Ragnarok as an experiment with
