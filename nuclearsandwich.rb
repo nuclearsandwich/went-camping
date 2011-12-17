@@ -23,20 +23,29 @@ module Nuclearsandwich::Controllers
   end
 end
 
+module Nuclearsandwich::Helpers
+  def navigation active_page = nil
+    div(id: 'navigation', class: 'container') do
+      ul(class: 'tabs') do
+        { "Home" => "/", "About" => "/about",
+          "Blog" => "http://blog.nuclearsandwich.com" }.each do |title, uri|
+            if title == active_page
+              li(class: 'active') { a(href: uri) { title } }
+            else
+              li { a(href: uri) { title } }
+            end
+          end
+      end
+    end
+  end
+end
+
 module Nuclearsandwich::Views
   def layout
     html do
       head do
         title { "Nuclearsandwich!" }
         link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
-      end
-
-      div(id: 'navigation', class: 'container') do
-        ul(class: 'tabs') do
-          li(class: 'active')  { a(href: '/') { "Home" } }
-          li { a(href: '/about') { "About" } }
-          li { a(href: 'http://blog.nuclearsandwich.com') { "Blog" } }
-        end
       end
 
       div(class: 'container') { body { self << yield } }
@@ -61,6 +70,8 @@ EOF
   end
 
   def home
+    navigation 'Home'
+
     h1 { "Welcome!" }
     p do
       <<EOF
@@ -77,6 +88,8 @@ EOF
   end
 
   def about
+    navigation 'About'
+
     div(class: 'span10') do
     p do
       <<EOF
