@@ -28,7 +28,9 @@ module Nuclearsandwich::Helpers
     div(id: 'navigation', class: 'container') do
       ul(class: 'tabs') do
         { "Home" => "/", "About" => "/about",
-          "Blog" => "http://blog.nuclearsandwich.com" }.each do |title, uri|
+          "Blog" => "http://blog.nuclearsandwich.com",
+       "GitHub"=> "https://github.com/nuclearsandwich",
+       "BitBucket" => "http://code.nuclearsandwich.com" }.each do |title, uri|
             if title == active_page
               li(class: 'active') { a(href: uri) { title } }
             else
@@ -48,10 +50,8 @@ module Nuclearsandwich::Views
         link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
       end
 
-      div(class: 'container span10 offset3') { body { self << yield } }
-
-      div(id: 'footer', class: 'container span10 offset3') do
-        hr
+      div(class: 'container') { body { self << yield } }
+      div(id: 'footer', class: 'container') do
         p do
           <<EOF
 This website was made by Steven! Ragnarok as an experiment with
