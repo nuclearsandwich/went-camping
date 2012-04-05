@@ -1,1 +1,1 @@
-web: camping -s puma -p $PORT nuclearsandwich.rb
+web: camping -s thin -p $PORT nuclearsandwich.rb

@@ -2,5 +2,5 @@ source "https://rubygems.org"
 
 gem "camping"
 gem "markaby"
-gem "puma"
+gem "thin"
 
