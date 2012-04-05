@@ -50,27 +50,45 @@ module Nuclearsandwich::Views
         link(rel: 'stylesheet', type: 'text/css', href: '/css/bootstrap.min.css')
       end
 
-      div(class: 'container span10 offset3') { body { self << yield } }
-      div(id: 'footer', class: 'container span10 offset3') do
-        hr
-        p do
-          <<EOF
+      body do
+        div(class: 'container span10 offset3') { self << yield }
+        div(id: 'footer', class: 'container span10 offset3') do
+          hr
+          p do
+            <<-EOF
 This website was made by Steven! Ragnarok as an experiment with
 #{a(href: 'http://camping.rubyforge.org') { "Camping" }} and
 #{a(href: 'http://twitter.github.com/bootstrap') { "Bootstrap" }}.
-EOF
-        end
+            EOF
+          end
 
-        p do
-          <<EOF
+          p do
+            <<-EOF
 The source code for this page is
 #{a(href: 'https://github.com/nuclearsandwich/nuclearsandwich.com'){ "public" }}
-however what little content there is here is Copyright #{Time.now.year}.
-EOF
+however what little content there is here is Copyright #{Time.now.year} by
+Steven!.
+            EOF
+          end
         end
+        script type: 'text/javascript' do
+          <<-JAVASCRIPT
+var _gauges = _gauges || [];
+(function() {
+  var t   = document.createElement('script');
+  t.type  = 'text/javascript';
+  t.async = true;
+  t.id    = 'gauges-tracker';
+  t.setAttribute('data-site-id', '4f7a870c613f5d740a000178');
+  t.src = '//secure.gaug.es/track.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(t, s);
+})();
+          JAVASCRIPT
       end
     end
   end
+end
 
   def home
     navigation 'Home'
