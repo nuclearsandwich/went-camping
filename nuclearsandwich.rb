@@ -10,7 +10,7 @@ module Nuclearsandwich::Controllers
   class About
     def get
       @name = "Steven!"
-      @employer = "NOWBOX" # soon to be For the betterment of all humankind
+      @employment = "as a free agent for CircleCI"
       render :about
     end
   end
@@ -110,10 +110,9 @@ EOF
 
   def about
     navigation 'About'
-
     div(class: 'span10') do
-    p do
-      <<EOF
+      p do
+        <<EOF
 #{@name} is a slightly mad (1) student of computer science and mathematics
 currently attending San Jose State University and this is the only sentence in
 this bio written in the third person. I like to write software and for the last
@@ -121,11 +120,11 @@ two-and-a-bit years have fancied myself a developer. I write chiefly in Ruby
 but am interested in a #{a(href: '#langs-by-interest'){ "great" }}
 #{a(href: "#langs-by-proficiency") { "many" }} programming languages.
 EOF
-    end
+      end
 
-    p do
-      <<EOF
-At the moment I work for #{@employer} but I'm always on the lookout for cool and
+      p do
+        <<EOF
+At the moment I work #{@employment} but I'm always on the lookout for cool and
 exciting things. For the time being I can only work part time or by contract
 since the one time I tried to maintain a full time position was disasterous for
 my studies. I'm most likely to be great for you if you have custodial work such
@@ -137,8 +136,8 @@ dependable backbone developer when I may need to take a week off to really nail
 an asignment and I don't want to put you or I in the position of hurting
 schoolwork since it makes me ever so bitter.
 EOF
+      end
     end
-  end
 
     p(id: 'footnotes') do
       <<EOF
@@ -153,16 +152,18 @@ EOF
 
     ul do
       li { a(href: "http://ruby-lang.org") { "Ruby" } }
-      li { a(href: "http://fancy-lang.org") { "Fancy" } }
-      li { a(href: "http://iolanguage.com") { "Io" } }
-      li { a(href: "http://haskell.org") { "Haskell" } }
       li { a(href: "http://clojure.org") { "Clojure" } }
+      li { a(href: "http://julialang.org") { "Julia" } }
       li { a(href: "http://c.learncodetheharday.org") { "C" } }
-      li { a(href: "http://redline.st") { "Redline Smalltalk" } }
       li { a(href: "http://mirah.org") { "Mirah" } }
+      li { a(href: "http://fancy-lang.org") { "Fancy" } }
+      li { a(href: "http://haskell.org") { "Haskell" } }
+      li { a(href: "http://redline.st") { "Redline Smalltalk" } }
+      li { a(href: "http://golang.org") { "Go" } }
+      li { a(href: "http://r-project.org") { "R" } }
       li { a(href: "http://coffeescript.org") { "CoffeeScript" } }
       li { a(href: "http://www.gnu.org/software/mit-scheme/") { "Scheme" } }
-      li { a(href: "http://ruby-lang.org") { "Ruby" } }
+      li { a(href: "http://iolanguage.com") { "Io" } }
       li { a(href: "https://developer.mozilla.org/en/HTML/HTML5") { "HTML5" } }
       li { a(href: "https://developer.mozilla.org/en/CSS") { "CSS" } }
     end
@@ -173,8 +174,8 @@ EOF
 
     ul do
       li { a(href: "http://github.com/nuclearsandwich/ruby_koans") { "Ruby" } }
-      li { a(href: "http://github.com/nuclearsandwich/mancala") { "Java" } }
       li { a(href: "http://github.com/nuclearsandwich/clojure-koans") { "Clojure" } }
+      li { a(href: "http://github.com/nuclearsandwich/mancala") { "Java" } }
       li { a(href: "http://github.com/nuclearsandwich/lcthw_exercises") { "C" } }
     end
   end
